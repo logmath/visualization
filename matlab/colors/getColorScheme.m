@@ -1,7 +1,7 @@
 % function colvect = getColorScheme(colorScheme)
 % This function returns a color vector corresponding to the desired color
 % scheme. *CBF* denotes color schemes that are colorblind friendly.
-function colvect = getColorScheme(colorScheme)
+function colvect = getColorScheme(colorScheme,num)
     switch lower(colorScheme)
         case {1,'matlabdefault'} % *CBF* MATLAB Default 
             % Colors   R     G     B
@@ -115,15 +115,14 @@ function colvect = getColorScheme(colorScheme)
                        ]/255;
         case {11,'okabeito'} % *CBF* Okabe Ito Color Palette https://jfly.uni-koeln.de/color/
             % Colors   R   G   B
-            colvect = [  0   0   0;...        black
+            colvect = [213  94   0;...        vermillion
                          0 114 178;...        blue
-                       213  94   0;...        vermillion
                          0 158 115;...        bluish green
                        230 159   0;...        orange
                         86 180 233;...        sky blue
                        204 121 167;...        reddish purple
                        240 228  66;...        yellow
-                       
+                         0   0   0;...        black
                        ]/255; 
         case {12,'medium1'} % *CBF* https://medium.com/@allieofisher/inclusive-color-palettes-for-the-web-bbfe8cf2410e
             % Colors   R   G   B
@@ -158,4 +157,8 @@ function colvect = getColorScheme(colorScheme)
             end % ~isnan(colorScheme)
             colvect = NaN;
     end % switch colorScheme
+
+    if nargin > 1 % if option to return only one color
+        colvect = colvect(num,:);
+    end
 end % function getColorScheme
